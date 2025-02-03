@@ -1,50 +1,65 @@
 /**
  * Fonction qui prend en paramètre un tableau d'entiers positifs et retourne le premier.
- * 
+ *
  * Retourne -1 si le tableau est vide.
  */
-export function getFirstNumber(): void {
+export function getFirstNumber(tab: number[]): number {
+    if(tab.length == 0){
+        return -1;
+    } else {
+        return tab[0];
+    }
 }
 
 /**
  * Retourne le dernier élément d'un tableau de string
- * 
+ *
  * @param songs Liste de chansons
  * @returns La dernière chaîne de caractères
  */
-export function getLastSongPlayed(): void {
+export function getLastSongPlayed(songs: string[]): string {
+    return songs[songs.length-1];
 }
 
 /**
  * Retrouve le mot le plus long d'un tableau de strings.
- * 
+ *
  * Afin de retrouver le mot le plus long vous pouvez utiliser une approche basée sur "reduce".
- * 
+ *
  * Pour apprendre à vous servir de "reduce" : https://medium.com/free-code-camp/three-ways-to-find-the-longest-word-in-a-string-in-javascript-a2fb04c9757c#720b
  */
-export function findLongestWord(): void {
+export function findLongestWord(songs : string[]): string {
+    var longestWord: string = songs.reduce((max, num) => (num.length > max.length ? num : max), songs[0]);
+    return longestWord;
 }
 
 /**
  * Crée et initialise un tableau avec une valeur par défaut.
- * 
+ *
  * @param length La taille du tableau à créer (number)
  * @param defaultValue La valeur par défaut (string)
  */
-export function fillArrayWithDefaultValue(): void {
+export function fillArrayWithDefaultValue(length: number, defaultValue: string): string[] {
+    var tab: string[] = [];
+    for (let i = 0; i < length; i++){
+        tab[i] = defaultValue;
+    }
+    return tab;
 }
 
 /**
  * Trie un tableau de chaînes de caractères par taille croissante de chaîne.
- * 
+ *
  * Pour trier le tableau vous pourrez utiliser la méthode "sort()" associée à une fonction de comparaison : https://developer.mozilla.org/fr/docs/Web/JavaScript/Reference/Global_Objects/Array/sort 
- * 
+ *
  * Attention : la fonction doit renvoyer un NOUVEAU TABLEAU (nouvelle instance) et non pas celui passé en paramètre. Comment faire ?
- * 
+ *
  * @param arrayToSort Le tableau de chaînes de caractères à trier
  * @returns Le tableau trié
  */
-export function sortBySize(): void {
+export function sortBySize(arrayToSort: string[]): string[] {
+    let nvTab : string[] =arrayToSort.sort(); 
+    return nvTab;
 }
 
 // ----------- TABLEAUX AVEC DES UNIONS -----------

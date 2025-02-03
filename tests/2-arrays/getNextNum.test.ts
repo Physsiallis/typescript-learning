@@ -10,4 +10,8 @@ describe('getFirstNumber', () => {
     expect(getFirstNumber([1, 2, 3])).toBe(1)
     expect(getFirstNumber([4, 5, 6])).toBe(4)
   })
+
+  it('tableau vide', () => {
+    expect(getFirstNumber([])).toBe(-1)
+  })
 })
