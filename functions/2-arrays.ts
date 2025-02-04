@@ -58,53 +58,81 @@ export function fillArrayWithDefaultValue(length: number, defaultValue: string):
  * @returns Le tableau trié
  */
 export function sortBySize(arrayToSort: string[]): string[] {
-    let nvTab : string[] =arrayToSort.sort(); 
-    return nvTab;
+    let tab = arrayToSort.map(e=>e).sort((a, b) => a.length - b.length);
+    return tab;
 }
 
 // ----------- TABLEAUX AVEC DES UNIONS -----------
 
 /**
  * Additionne les éléments d'un tableau qu'ils soient de type "number" ou "string".
- * 
+ *
  * @param array Utilisation d'un tableau avec types multiples : https://www.geeksforgeeks.org/defining-array-with-multiple-types-in-typescript/
  * @returns Le résultat de la somme de type "number"
  */
-export function sumStringsAndNumbers(): void {
+/** Alias pouvant être utilisé pour la fonction "addNumbersOrStringsAlias" */
+type StringOrNumber = string | number
+export function sumStringsAndNumbers(array: StringOrNumber[]): number {
+    var x = 0;
+    array.forEach(element => {
+        if(typeof(element) == "string"){
+            x += parseInt(element);
+        } else {
+            x+= element;
+        }
+    });
+    return x
 }
 
 /**
  * Traite un tableau pouvant contenir des "string" mais également des éléments "null".
  * Cette fonction est chargée de supprimer toutes les valeurs null et de garder les "srings".
- * 
+ *
  * Pro-tip : renseignez vous sur la fonction "filter" : https://developer.mozilla.org/fr/docs/Web/JavaScript/Reference/Global_Objects/Array/filter
- *  
+ *
  * @param array Un tableau pouvant contenir des "string" mais également des éléments "null"
  * @returns Tableau de chaînes de caractères résultat
  */
-export function stringsOnly(): void {
- }
+
+type flemmeDeTrouverUnNom = string | null
+export function stringsOnly(array: flemmeDeTrouverUnNom []): flemmeDeTrouverUnNom[] {
+    let tab = array.filter((e) => e!=null);
+    return tab;
+}
 
 // ----------- TUPLES -----------
 
 /**
  * Transforme un tuple contenant des informations d'utilisateur en un nom d'utilisateur arbitraire.
- * 
+ *
  * Par exemple :
  * - generateUsername(['John', 'Smith', 1980]) doit retourner 'smithjo_1980'
  * - generateUsername(['Bobby', 'Fallon', 1995]) should return 'fallonbo_1995'
- * 
+ *
  * @param userInfo Un tuple contenant les informations utilisateur
  * @returns Le nom utilisateur généré.
  */
-export function generateUsername(): void {
+export function generateUsername(userInfo: StringOrNumber[]): string {
+    var pseudo: string = userInfo[1].toString();
+    for (let i=0; i<2; i++){
+        if(typeof(userInfo[0])=="string"){
+            pseudo+=userInfo[0][i]
+        }
+    }
+    pseudo += "_"+userInfo[2].toString();
+    return pseudo.toLowerCase();
 }
 
 /**
  * Enum utilisée pour définir 4 points cardinaux
  * TODO : à compléter avec {North, South, East, West}
  */
+
 export enum Direction {
+    North,
+    South,
+    East,
+    West
 }
 
 /**
@@ -113,18 +141,32 @@ export enum Direction {
  *        ^ N
  *        |
  *        |
- * W <--[0, 0]--> E 
+ * W <--[0, 0]--> E
  *        |
  *        |
  *        S
- * 
+ *
  * Par exemple :
  * - getNextMapCoord([0, 0], Direction.North) doit retourner [0, 1]
  * - getNextMapCoord([0, 0], Direction.East)doit retourner [1, 0]
- * 
+ *
  * @param coordinates Tuple contenant des coordonnées le premier élément est la position sur l'axe des abscisses, la seconde sur l'axe des ordonnées
  * @param direction Enum présentant une direction (North, South, East, West)
  * @returns Les nouvelles coordonnées (tuple)
  */
-export function getNextMapCoord(): void { 
+export function getNextMapCoord(coordinates: number[], direction: Direction): number[] {
+    switch(direction){
+        case Direction.North:
+            coordinates[1]+=1
+            return coordinates;
+        case Direction.East:
+            coordinates[0]+=1;
+            return coordinates;
+        case Direction.West:
+            coordinates[0]-=1
+            return coordinates;
+        case Direction.South:
+            coordinates[1]-=1;
+            return coordinates
+    }
 }
