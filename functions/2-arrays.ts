@@ -113,14 +113,15 @@ export function stringsOnly(array: flemmeDeTrouverUnNom []): flemmeDeTrouverUnNo
  * @returns Le nom utilisateur généré.
  */
 export function generateUsername(userInfo: StringOrNumber[]): string {
-    var pseudo: string = userInfo[1].toString();
-    for (let i=0; i<2; i++){
-        if(typeof(userInfo[0])=="string"){
-            pseudo+=userInfo[0][i]
-        }
-    }
-    pseudo += "_"+userInfo[2].toString();
-    return pseudo.toLowerCase();
+    // var pseudo: string = userInfo[1].toString();
+    // for (let i=0; i<2; i++){
+    //     if(typeof(userInfo[0])=="string"){
+    //         pseudo+=userInfo[0][i]
+    //     }
+    // }
+    // pseudo += "_"+userInfo[2].toString();
+    // return pseudo.toLowerCase();
+    return `${userInfo[1]}${userInfo[0].toString().slice(0, 2)}_${userInfo[2]}`.toLowerCase()
 }
 
 /**
