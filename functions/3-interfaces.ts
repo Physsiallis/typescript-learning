@@ -39,18 +39,19 @@ export function howManyFriends(friends: Contact[]): number {
  * @param contacts Tableau de contacts à traiter
  * @returns Une adresse ou "null"
  */
-export function findTheBat(contact: Contact[]): string | null {
-    let address: string = "";
-    contact.forEach(e => {
-        if(e.name == "Batman"){
-            address = e.address;
-        }
-    });
-    if(address != ""){
-        return address
-    } else {
-        return null
-    }
+export function findTheBat(contacts: Contact[]): string | null {
+    // let address: string = "";
+    // contacts.forEach(e => {
+    //     if(e.name == "Batman"){
+    //         address = e.address;
+    //     }
+    // });
+    // if(address != ""){
+    //     return address
+    // } else {
+    //     return null
+    // }
+    return contacts.find(e => e.name == "Batman") != undefined ? contacts.find(e => e.name == "Batman").address : null;
 }
 
 // ----------- CLEF OPTIONNELLES -----------

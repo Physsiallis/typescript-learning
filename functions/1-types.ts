@@ -85,6 +85,7 @@ export function addNumbersOrStrings(a: number | string, b: number | string): num
     }
 
     return a + b;
+    //return Number(a)+Number(b); pas opti du tout mais ne fait qu'une petite ligne !
 }
 
 /** Alias pouvant être utilisé pour la fonction "addNumbersOrStringsAlias" */
@@ -94,14 +95,7 @@ type StringOrNumber = string | number
  * Reprenez la fonction fonction précédente et utilisez un alias en tant que type des paramètres.
  */
 export function addNumbersOrStringsAlias(a: StringOrNumber, b: StringOrNumber) : number {
-    if (typeof(a) ==="string"){
-        a = parseInt(a);
-    }
-    if (typeof(b) === "string"){
-        b = parseInt(b);
-    }
-
-    return a + b;
+    return addNumbersOrStrings(a, b);
 }
 
 /**

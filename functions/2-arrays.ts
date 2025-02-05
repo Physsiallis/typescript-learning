@@ -18,7 +18,7 @@ export function getFirstNumber(tab: number[]): number {
  * @returns La dernière chaîne de caractères
  */
 export function getLastSongPlayed(songs: string[]): string {
-    return songs[songs.length-1];
+    return songs[songs.length-1]; //songs.at(-1) existe aussi.
 }
 
 /**
@@ -29,8 +29,7 @@ export function getLastSongPlayed(songs: string[]): string {
  * Pour apprendre à vous servir de "reduce" : https://medium.com/free-code-camp/three-ways-to-find-the-longest-word-in-a-string-in-javascript-a2fb04c9757c#720b
  */
 export function findLongestWord(songs : string[]): string {
-    var longestWord: string = songs.reduce((max, num) => (num.length > max.length ? num : max), songs[0]);
-    return longestWord;
+    return songs.reduce((max, num) => (num.length > max.length ? num : max), songs[0]);
 }
 
 /**
@@ -40,11 +39,12 @@ export function findLongestWord(songs : string[]): string {
  * @param defaultValue La valeur par défaut (string)
  */
 export function fillArrayWithDefaultValue(length: number, defaultValue: string): string[] {
-    var tab: string[] = [];
-    for (let i = 0; i < length; i++){
-        tab[i] = defaultValue;
-    }
-    return tab;
+    // var tab: string[] = [];
+    // for (let i = 0; i < length; i++){
+    //     tab[i] = defaultValue;
+    // }
+    const tableau: string[] = new Array(length).fill(defaultValue); //surprenamment je me souviens avoir essayer ca hier, mais ca ne fonctionnais pas... J'imagine qu'une petite erreur m'avait échaper...
+    return tableau;
 }
 
 /**
@@ -95,9 +95,8 @@ export function sumStringsAndNumbers(array: StringOrNumber[]): number {
  */
 
 type flemmeDeTrouverUnNom = string | null
-export function stringsOnly(array: flemmeDeTrouverUnNom []): flemmeDeTrouverUnNom[] {
-    let tab = array.filter((e) => e!=null);
-    return tab;
+export function stringsOnly(array: flemmeDeTrouverUnNom []): string[] {
+    return array.filter((e): e is string => e!=null);
 }
 
 // ----------- TUPLES -----------
@@ -112,7 +111,7 @@ export function stringsOnly(array: flemmeDeTrouverUnNom []): flemmeDeTrouverUnNo
  * @param userInfo Un tuple contenant les informations utilisateur
  * @returns Le nom utilisateur généré.
  */
-export function generateUsername(userInfo: StringOrNumber[]): string {
+export function generateUsername(userInfo: [string, string, number]): string {
     // var pseudo: string = userInfo[1].toString();
     // for (let i=0; i<2; i++){
     //     if(typeof(userInfo[0])=="string"){
@@ -121,7 +120,7 @@ export function generateUsername(userInfo: StringOrNumber[]): string {
     // }
     // pseudo += "_"+userInfo[2].toString();
     // return pseudo.toLowerCase();
-    return `${userInfo[1]}${userInfo[0].toString().slice(0, 2)}_${userInfo[2]}`.toLowerCase()
+    return `${userInfo[1]}${userInfo[0].toString().slice(0, 2)}_${userInfo[2]}`.toLowerCase() //return (userInfo[1] + userInfo[0].slice(0,2) + "_" + userInfo[2]).toLowerCase();
 }
 
 /**
